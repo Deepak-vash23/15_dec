@@ -40,18 +40,18 @@ const CardDeck = () => {
           animate={{ opacity: 1, scale: 1 }}
           className="text-center"
         >
-          <Heart className="w-24 h-24 mx-auto mb-6 text-neon-pink glow-text-pink" />
-          <h2 className="text-4xl font-bold text-glowing-gold glow-text-gold mb-4">
+          <Heart className="w-16 h-16 md:w-24 md:h-24 mx-auto mb-4 md:mb-6 text-neon-pink glow-text-pink" />
+          <h2 className="text-2xl md:text-4xl font-bold text-glowing-gold glow-text-gold mb-4 px-4">
             That's why I love you! 💕
           </h2>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate('/constellation')}
-            className="mt-8 px-8 py-4 bg-gradient-to-r from-glowing-gold to-neon-pink text-dark-slate font-bold rounded-lg glow-gold flex items-center gap-2 mx-auto"
+            className="mt-6 md:mt-8 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-glowing-gold to-neon-pink text-dark-slate text-sm md:text-base font-bold rounded-lg glow-gold flex items-center gap-2 mx-auto"
           >
             Continue
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
           </motion.button>
         </motion.div>
       </div>
@@ -59,8 +59,8 @@ const CardDeck = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-dark-slate to-deep-violet relative overflow-hidden">
-      <div className="relative w-full max-w-md h-[600px]">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-dark-slate to-deep-violet relative overflow-hidden px-4">
+      <div className="relative w-full max-w-md h-[500px] md:h-[600px]">
         <AnimatePresence>
           {cards.slice(currentIndex, currentIndex + 3).map((card, index) => {
             const isTop = index === 0
@@ -91,15 +91,15 @@ const CardDeck = () => {
                   rotate: (_, info) => info.offset.x * 0.1,
                   scale: 1.05,
                 }}
-                className="absolute w-full h-full bg-dark-slate/90 backdrop-blur-sm border-2 border-glowing-gold/50 rounded-2xl p-8 glow-soft cursor-grab active:cursor-grabbing"
+                className="absolute w-full h-full bg-dark-slate/90 backdrop-blur-sm border-2 border-glowing-gold/50 rounded-2xl p-6 md:p-8 glow-soft cursor-grab active:cursor-grabbing"
               >
                 <div className="h-full flex flex-col items-center justify-center text-center">
-                  <Heart className="w-16 h-16 mb-6 text-neon-pink glow-text-pink" />
-                  <p className="text-2xl font-handwriting text-glowing-gold glow-text-gold">
+                  <Heart className="w-12 h-12 md:w-16 md:h-16 mb-4 md:mb-6 text-neon-pink glow-text-pink" />
+                  <p className="text-lg md:text-2xl font-handwriting text-glowing-gold glow-text-gold px-2">
                     {card.text}
                   </p>
                   {isTop && (
-                    <p className="mt-8 text-neon-pink text-sm">
+                    <p className="mt-6 md:mt-8 text-neon-pink text-xs md:text-sm">
                       Swipe or drag to reveal more...
                     </p>
                   )}

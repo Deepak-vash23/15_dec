@@ -289,31 +289,32 @@ const GravityWorld = () => {
     <div className="min-h-screen relative bg-gradient-to-br from-dark-slate to-deep-violet overflow-hidden">
       <div ref={sceneRef} className="absolute inset-0" />
 
-      <div className="absolute top-6 left-6 z-20 flex gap-4">
+      <div className="absolute top-4 left-4 md:top-6 md:left-6 z-20 flex flex-col md:flex-row gap-2 md:gap-4">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={toggleGravity}
-          className="px-6 py-3 bg-dark-slate/80 backdrop-blur-sm border-2 border-glowing-gold/50 rounded-lg text-glowing-gold font-bold glow-soft flex items-center gap-2"
+          className="px-4 py-2 md:px-6 md:py-3 bg-dark-slate/80 backdrop-blur-sm border-2 border-glowing-gold/50 rounded-lg text-glowing-gold text-sm md:text-base font-bold glow-soft flex items-center gap-2"
         >
-          <Zap className="w-5 h-5" />
-          {gravityEnabled ? 'Zero Gravity' : 'Normal Gravity'}
+          <Zap className="w-4 h-4 md:w-5 md:h-5" />
+          <span className="hidden sm:inline">{gravityEnabled ? 'Zero Gravity' : 'Normal Gravity'}</span>
+          <span className="sm:hidden">{gravityEnabled ? 'Zero G' : 'Gravity'}</span>
         </motion.button>
       </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="absolute bottom-6 right-6 z-20"
+        className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-20"
       >
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => navigate('/cards')}
-          className="px-6 py-3 bg-gradient-to-r from-glowing-gold to-neon-pink text-dark-slate font-bold rounded-lg glow-gold flex items-center gap-2"
+          className="px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-glowing-gold to-neon-pink text-dark-slate text-sm md:text-base font-bold rounded-lg glow-gold flex items-center gap-2"
         >
           Next
-          <ArrowRight className="w-5 h-5" />
+          <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
         </motion.button>
       </motion.div>
     </div>

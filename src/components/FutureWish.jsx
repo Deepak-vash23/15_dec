@@ -99,18 +99,18 @@ const FutureWish = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="text-center mb-8"
+          className="text-center mb-6 md:mb-8 px-4"
         >
           <motion.div
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ repeat: Infinity, duration: 2 }}
           >
-            <Heart className="w-20 h-20 mx-auto mb-4 text-neon-pink glow-text-pink" />
+            <Heart className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 text-neon-pink glow-text-pink" />
           </motion.div>
-          <h1 className="text-4xl font-bold text-glowing-gold glow-text-gold mb-4">
+          <h1 className="text-2xl md:text-4xl font-bold text-glowing-gold glow-text-gold mb-4">
             The Future Wish Jar
           </h1>
-          <p className="text-neon-pink text-lg">
+          <p className="text-neon-pink text-base md:text-lg">
             Share a wish for our next month together
           </p>
         </motion.div>
@@ -123,7 +123,7 @@ const FutureWish = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               onSubmit={handleSubmit}
-              className="bg-dark-slate/80 backdrop-blur-sm rounded-2xl p-8 border-2 border-glowing-gold/50 glow-soft"
+              className="bg-dark-slate/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 border-2 border-glowing-gold/50 glow-soft"
             >
               <textarea
                 value={wish}
@@ -147,7 +147,7 @@ const FutureWish = () => {
               key="success"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="text-center bg-dark-slate/80 backdrop-blur-sm rounded-2xl p-8 border-2 border-glowing-gold/50 glow-soft"
+              className="text-center bg-dark-slate/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 border-2 border-glowing-gold/50 glow-soft"
             >
               <motion.div
                 animate={{ y: [0, -20, 0] }}
@@ -156,18 +156,18 @@ const FutureWish = () => {
               >
                 🦋
               </motion.div>
-              <h2 className="text-3xl font-bold text-glowing-gold glow-text-gold mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-glowing-gold glow-text-gold mb-4">
                 Your wish has been captured!
               </h2>
-              <p className="text-neon-pink text-lg mb-6">
+              <p className="text-neon-pink text-base md:text-lg mb-6">
                 It's now floating in the jar, ready to come true 💕
               </p>
-              <div className="flex gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setSubmitted(false)}
-                  className="px-6 py-3 bg-gradient-to-r from-glowing-gold to-neon-pink text-dark-slate font-bold rounded-lg glow-gold"
+                  className="px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-glowing-gold to-neon-pink text-dark-slate text-sm md:text-base font-bold rounded-lg glow-gold"
                 >
                   Add Another Wish
                 </motion.button>
@@ -175,9 +175,9 @@ const FutureWish = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleDone}
-                  className="px-6 py-3 bg-gradient-to-r from-neon-pink to-glowing-gold text-dark-slate font-bold rounded-lg glow-pink flex items-center gap-2"
+                  className="px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-neon-pink to-glowing-gold text-dark-slate text-sm md:text-base font-bold rounded-lg glow-pink flex items-center justify-center gap-2"
                 >
-                  <Check className="w-5 h-5" />
+                  <Check className="w-4 h-4 md:w-5 md:h-5" />
                   Done
                 </motion.button>
               </div>
@@ -190,10 +190,10 @@ const FutureWish = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-12 flex justify-center"
+          className="mt-8 md:mt-12 flex justify-center"
         >
-          <div className="relative">
-            <svg width="200" height="300" viewBox="0 0 200 300" className="butterfly-glow">
+          <div className="relative w-32 h-48 md:w-48 md:h-72">
+            <svg width="100%" height="100%" viewBox="0 0 200 300" className="butterfly-glow" preserveAspectRatio="xMidYMid meet">
               {/* Jar body */}
               <path
                 d="M 50 50 Q 50 30 70 30 L 130 30 Q 150 30 150 50 L 150 250 Q 150 270 130 270 L 70 270 Q 50 270 50 250 Z"

@@ -94,10 +94,10 @@ const LetterPage = () => {
                 >
                   <motion.form
                     onSubmit={handleSubmit}
-                    className="bg-dark-slate/90 backdrop-blur-sm rounded-lg p-6 border-2 border-glowing-gold/50 glow-soft w-3/4"
+                    className="bg-dark-slate/90 backdrop-blur-sm rounded-lg p-4 md:p-6 border-2 border-glowing-gold/50 glow-soft w-full max-w-xs md:w-3/4"
                   >
-                    <Lock className="w-12 h-12 mx-auto mb-4 text-glowing-gold glow-text-gold" />
-                    <p className="text-glowing-gold text-center mb-4 font-handwriting text-lg">
+                    <Lock className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-4 text-glowing-gold glow-text-gold" />
+                    <p className="text-glowing-gold text-center mb-4 font-handwriting text-base md:text-lg">
                       Enter the secret word to open the letter
                     </p>
                     <input
@@ -146,28 +146,28 @@ const LetterPage = () => {
             </motion.div>
           </motion.div>
         ) : (
-          <motion.div
-            key="open-letter"
-            initial={{ opacity: 0, scale: 0.8, rotateY: -180 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            className="w-full max-w-2xl bg-gradient-to-br from-dark-slate/95 to-deep-violet/95 backdrop-blur-sm rounded-2xl p-8 md:p-12 border-2 border-glowing-gold/50 glow-soft shadow-2xl"
-          >
-            {/* Letter content */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-white space-y-6"
+              key="open-letter"
+              initial={{ opacity: 0, scale: 0.8, rotateY: -180 }}
+              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+              className="w-full max-w-2xl bg-gradient-to-br from-dark-slate/95 to-deep-violet/95 backdrop-blur-sm rounded-2xl p-4 md:p-8 lg:p-12 border-2 border-glowing-gold/50 glow-soft shadow-2xl max-h-[90vh] overflow-y-auto"
             >
-              <div className="text-right mb-6">
-                <p className="text-glowing-gold font-handwriting text-lg">To: My Love</p>
-              </div>
+              {/* Letter content */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-white space-y-4 md:space-y-6"
+              >
+                <div className="text-right mb-4 md:mb-6">
+                  <p className="text-glowing-gold font-handwriting text-base md:text-lg">To: My Love</p>
+                </div>
 
-              <h1 className="text-3xl md:text-4xl font-bold text-glowing-gold glow-text-gold mb-2 text-center">
-                Subject: For the girl who owns my heart
-              </h1>
+                <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-glowing-gold glow-text-gold mb-2 text-center">
+                  Subject: For the girl who owns my heart
+                </h1>
 
-              <div className="space-y-4 text-lg leading-relaxed font-handwriting">
+                <div className="space-y-3 md:space-y-4 text-sm md:text-lg leading-relaxed font-handwriting">
                 <p className="text-glowing-gold">My Love,</p>
 
                 <p className="text-white">Happy 4 months.</p>
@@ -192,9 +192,9 @@ const LetterPage = () => {
                   Thank you for giving me a chance to love you. I promise to make every day worth it.
                 </p>
 
-                <div className="mt-8 text-right">
-                  <p className="text-glowing-gold font-handwriting text-xl">Yours,</p>
-                  <p className="text-glowing-gold font-handwriting text-2xl">Deepak</p>
+                <div className="mt-6 md:mt-8 text-right">
+                  <p className="text-glowing-gold font-handwriting text-lg md:text-xl">Yours,</p>
+                  <p className="text-glowing-gold font-handwriting text-xl md:text-2xl">Deepak</p>
                 </div>
               </div>
             </motion.div>

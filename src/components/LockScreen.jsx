@@ -111,14 +111,14 @@ const LockScreen = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="bg-dark-slate/80 backdrop-blur-sm rounded-2xl p-8 border-2 border-glowing-gold/30 glow-soft"
+              className="bg-dark-slate/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 border-2 border-glowing-gold/30 glow-soft"
             >
               <div className="text-center mb-6">
-                <Lock className="w-16 h-16 mx-auto mb-4 text-glowing-gold glow-text-gold" />
-                <h1 className="text-3xl font-bold text-glowing-gold glow-text-gold mb-2">
+                <Lock className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 text-glowing-gold glow-text-gold" />
+                <h1 className="text-2xl md:text-3xl font-bold text-glowing-gold glow-text-gold mb-2">
                   Love Lock
                 </h1>
-                <p className="text-neon-pink text-lg">
+                <p className="text-neon-pink text-base md:text-lg px-2">
                   {QUESTION}
                 </p>
               </div>

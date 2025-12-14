@@ -105,9 +105,9 @@ const ConstellationGallery = () => {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="absolute top-8 left-1/2 transform -translate-x-1/2 z-30 text-center px-4"
+        className="absolute top-4 md:top-8 left-1/2 transform -translate-x-1/2 z-30 text-center px-4 max-w-[95%] md:max-w-none"
       >
-        <h2 className="text-2xl md:text-3xl font-handwriting text-glowing-gold glow-text-gold mb-2">
+        <h2 className="text-base md:text-2xl lg:text-3xl font-handwriting text-glowing-gold glow-text-gold mb-2 leading-tight">
           Every best moment we had, and find the pic where I kissed you first time
         </h2>
       </motion.div>
@@ -220,16 +220,16 @@ const ConstellationGallery = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="absolute bottom-6 right-6 z-20"
+        className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-20"
       >
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => navigate('/wish')}
-          className="px-6 py-3 bg-gradient-to-r from-glowing-gold to-neon-pink text-dark-slate font-bold rounded-lg glow-gold flex items-center gap-2"
+          className="px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-glowing-gold to-neon-pink text-dark-slate text-sm md:text-base font-bold rounded-lg glow-gold flex items-center gap-2"
         >
           Next
-          <ArrowRight className="w-5 h-5" />
+          <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
         </motion.button>
       </motion.div>
     </div>
