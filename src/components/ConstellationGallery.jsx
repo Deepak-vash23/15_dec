@@ -31,22 +31,22 @@ const ConstellationGallery = () => {
       const padding = 80
       const maxX = window.innerWidth - padding
       const maxY = window.innerHeight - padding
-      
+
       const newPhotos = imageFiles.map((filename, index) => {
         const initialX = padding + Math.random() * (maxX - padding)
         const initialY = padding + Math.random() * (maxY - padding)
-        
+
         // Generate random keyframe positions for chaotic movement
         const numKeyframes = 6 + Math.floor(Math.random() * 4) // 6-9 keyframes
         const keyframes = []
-        
+
         for (let i = 0; i < numKeyframes; i++) {
           keyframes.push({
             x: padding + Math.random() * (maxX - padding) - initialX,
             y: padding + Math.random() * (maxY - padding) - initialY,
           })
         }
-        
+
         return {
           id: index + 1,
           initialX,
@@ -57,10 +57,10 @@ const ConstellationGallery = () => {
           duration: 25 + Math.random() * 25, // Random duration 25-50 seconds (slower for mobile)
         }
       })
-      
+
       setPhotos(newPhotos)
     }
-    
+
     initializePhotos()
     window.addEventListener('resize', initializePhotos)
     return () => window.removeEventListener('resize', initializePhotos)
@@ -123,7 +123,7 @@ const ConstellationGallery = () => {
         {/* Photo stars with random haywire movement */}
         {photos.map((photo) => {
           if (!photo.keyframes || photo.keyframes.length === 0) return null
-          
+
           const xKeyframes = [
             ...photo.keyframes.map(k => k.x),
             photo.keyframes[0].x, // Loop back to start
@@ -134,7 +134,7 @@ const ConstellationGallery = () => {
           ]
           const numFrames = xKeyframes.length
           const times = Array.from({ length: numFrames }, (_, i) => i / (numFrames - 1))
-          
+
           return (
             <motion.div
               key={photo.id}
@@ -155,7 +155,7 @@ const ConstellationGallery = () => {
                 ease: 'linear',
                 times,
               }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.5,
                 zIndex: 50,
                 transition: { duration: 0.2 }
@@ -207,11 +207,7 @@ const ConstellationGallery = () => {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <div className="p-6 flex-shrink-0">
-                <h3 className="text-2xl font-bold text-glowing-gold glow-text-gold mb-2 text-center">
-                  {selectedPhoto.caption}
-                </h3>
-              </div>
+
             </motion.div>
           </motion.div>
         )}

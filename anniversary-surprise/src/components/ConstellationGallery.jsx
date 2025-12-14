@@ -42,7 +42,7 @@ const ConstellationGallery = ({ onNext }) => {
                         >
                             <div className="w-full h-full rounded-full overflow-hidden bg-gray-200">
                                 {/* Placeholder Image */}
-                                <img src={`https://picsum.photos/seed/${photo.id}/100`} alt="memory" className="w-full h-full object-cover" />
+                                <img src={`https://picsum.photos/seed/${photo.id}/100`} alt="" className="w-full h-full object-cover" />
                             </div>
                         </motion.div>
                     ))}
@@ -62,11 +62,8 @@ const ConstellationGallery = ({ onNext }) => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden">
-                                <img src={`https://picsum.photos/seed/${selectedId}/600/400`} alt="memory" className="w-full h-full object-cover" />
+                                <img src={`https://picsum.photos/seed/${selectedId}/600/400`} alt="" className="w-full h-full object-cover" />
                             </div>
-                            <h3 className="text-2xl font-handwriting text-midnight-violet text-center">
-                                {photos.find(p => p.id === selectedId)?.caption}
-                            </h3>
                             <button
                                 onClick={() => setSelectedId(null)}
                                 className="mt-4 w-full py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200"
