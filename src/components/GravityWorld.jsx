@@ -21,6 +21,23 @@ const GravityWorld = () => {
   useEffect(() => {
     const { Engine, Render, World, Bodies, Mouse, MouseConstraint, Events } = Matter
 
+    // Get proper viewport dimensions for mobile
+    const getViewportSize = () => {
+      // Use visual viewport if available (better for mobile)
+      if (window.visualViewport) {
+        return {
+          width: window.visualViewport.width,
+          height: window.visualViewport.height,
+        }
+      }
+      return {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      }
+    }
+
+    const viewport = getViewportSize()
+
     // Create engine
     const engine = Engine.create()
     engine.world.gravity.y = gravityEnabled ? 1 : 0
@@ -31,20 +48,38 @@ const GravityWorld = () => {
       element: sceneRef.current,
       engine: engine,
       options: {
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: viewport.width,
+        height: viewport.height,
         wireframes: false,
         background: 'transparent',
-        pixelRatio: window.devicePixelRatio || 1,
+        pixelRatio: Math.min(window.devicePixelRatio || 1, 2), // Limit pixel ratio for performance
       },
     })
     renderRef.current = render
 
+    // Handle resize
+    const handleResize = () => {
+      const newViewport = getViewportSize()
+      render.options.width = newViewport.width
+      render.options.height = newViewport.height
+      Render.setPixelRatio(render, Math.min(window.devicePixelRatio || 1, 2))
+      Render.lookAt(render, {
+        min: { x: 0, y: 0 },
+        max: { x: newViewport.width, y: newViewport.height },
+      })
+    }
+
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('orientationchange', handleResize)
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleResize)
+    }
+
     // Create ground
     const ground = Bodies.rectangle(
-      window.innerWidth / 2,
-      window.innerHeight - 20,
-      window.innerWidth,
+      viewport.width / 2,
+      viewport.height - 20,
+      viewport.width,
       40,
       {
         isStatic: true,
@@ -55,22 +90,22 @@ const GravityWorld = () => {
     // Create walls
     const leftWall = Bodies.rectangle(
       10,
-      window.innerHeight / 2,
+      viewport.height / 2,
       20,
-      window.innerHeight,
+      viewport.height,
       { isStatic: true, render: { fillStyle: 'transparent' } }
     )
     const rightWall = Bodies.rectangle(
-      window.innerWidth - 10,
-      window.innerHeight / 2,
+      viewport.width - 10,
+      viewport.height / 2,
       20,
-      window.innerHeight,
+      viewport.height,
       { isStatic: true, render: { fillStyle: 'transparent' } }
     )
     const topWall = Bodies.rectangle(
-      window.innerWidth / 2,
+      viewport.width / 2,
       10,
-      window.innerWidth,
+      viewport.width,
       20,
       { isStatic: true, render: { fillStyle: 'transparent' } }
     )
@@ -80,14 +115,20 @@ const GravityWorld = () => {
     const text = "HAPPY 4 MONTHS"
     const words = text.split(' ')
 
-    // Add text letters as boxes
-    let xOffset = 200
+    // Add text letters as boxes - adjust for mobile
+    const isMobile = viewport.width < 768
+    const letterSize = isMobile ? 25 : 35
+    const letterSpacing = isMobile ? 28 : 40
+    const wordSpacing = isMobile ? 30 : 60
+    const startY = isMobile ? viewport.height * 0.3 : viewport.height - 100
+    let xOffset = isMobile ? 50 : 200
+    
     words.forEach((word, wordIndex) => {
       word.split('').forEach((letter, letterIndex) => {
-        const x = xOffset + letterIndex * 40
-        const y = window.innerHeight - 100 - wordIndex * 60
+        const x = xOffset + letterIndex * letterSpacing
+        const y = startY - wordIndex * (isMobile ? 40 : 60)
 
-        const letterBody = Bodies.rectangle(x, y, 35, 50, {
+        const letterBody = Bodies.rectangle(x, y, letterSize, letterSize * 1.4, {
           render: {
             visible: false, // Hide default Matter.js rendering
             fillStyle: '#FCD34D',
@@ -102,15 +143,20 @@ const GravityWorld = () => {
         letterBody.letter = letter
         elements.push(letterBody)
       })
-      xOffset += word.length * 40 + 60
+      xOffset += word.length * letterSpacing + wordSpacing
     })
 
-    // Add hearts
-    for (let i = 0; i < 8; i++) {
+    // Add hearts - adjust for mobile
+    const heartCount = isMobile ? 5 : 8
+    const heartSpacing = isMobile ? viewport.width / (heartCount + 1) : 100
+    const heartY = isMobile ? viewport.height * 0.5 : viewport.height - 150
+    const heartSize = isMobile ? 15 : 20
+    
+    for (let i = 0; i < heartCount; i++) {
       const heart = Bodies.circle(
-        100 + i * 100,
-        window.innerHeight - 150,
-        20,
+        heartSpacing * (i + 1),
+        heartY,
+        heartSize,
         {
           render: {
             visible: false, // Hide default Matter.js rendering for custom drawing
@@ -128,13 +174,19 @@ const GravityWorld = () => {
       elements.push(heart)
     }
 
-    // Add butterflies (as rectangles for now, can be enhanced)
-    for (let i = 0; i < 5; i++) {
+    // Add butterflies - adjust for mobile
+    const butterflyCount = isMobile ? 3 : 5
+    const butterflySpacing = isMobile ? viewport.width / (butterflyCount + 1) : 120
+    const butterflyY = isMobile ? viewport.height * 0.6 : viewport.height - 200
+    const butterflyWidth = isMobile ? 20 : 30
+    const butterflyHeight = isMobile ? 15 : 20
+    
+    for (let i = 0; i < butterflyCount; i++) {
       const butterfly = Bodies.rectangle(
-        150 + i * 120,
-        window.innerHeight - 200,
-        30,
-        20,
+        butterflySpacing * (i + 1),
+        butterflyY,
+        butterflyWidth,
+        butterflyHeight,
         {
           render: {
             visible: false, // Hide default Matter.js rendering for custom drawing
@@ -181,7 +233,7 @@ const GravityWorld = () => {
           ctx.fillStyle = '#FCD34D'
           ctx.strokeStyle = '#F472B6'
           ctx.lineWidth = 2
-          ctx.font = 'bold 40px Arial'
+          ctx.font = isMobile ? `bold ${letterSize * 1.2}px Arial` : 'bold 40px Arial'
           ctx.textAlign = 'center'
           ctx.textBaseline = 'middle'
           ctx.fillText(body.letter, 0, 0)
@@ -272,6 +324,11 @@ const GravityWorld = () => {
 
     return () => {
       canvas.removeEventListener('click', handleCanvasClick)
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('orientationchange', handleResize)
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', handleResize)
+      }
       Events.off(render, 'afterRender')
       Render.stop(render)
       Engine.clear(engine)
