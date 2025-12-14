@@ -216,7 +216,7 @@ const ConstellationGallery = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-20"
+        className="fixed bottom- safe-bottom right-4 md:bottom-8 md:right-8 z-50 mb-4 md:mb-0"
       >
         <motion.button
           whileHover={{ scale: 1.05 }}

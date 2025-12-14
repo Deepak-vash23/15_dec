@@ -122,7 +122,7 @@ const GravityWorld = () => {
     const wordSpacing = isMobile ? 30 : 60
     const startY = isMobile ? viewport.height * 0.3 : viewport.height - 100
     let xOffset = isMobile ? 50 : 200
-    
+
     words.forEach((word, wordIndex) => {
       word.split('').forEach((letter, letterIndex) => {
         const x = xOffset + letterIndex * letterSpacing
@@ -151,7 +151,7 @@ const GravityWorld = () => {
     const heartSpacing = isMobile ? viewport.width / (heartCount + 1) : 100
     const heartY = isMobile ? viewport.height * 0.5 : viewport.height - 150
     const heartSize = isMobile ? 15 : 20
-    
+
     for (let i = 0; i < heartCount; i++) {
       const heart = Bodies.circle(
         heartSpacing * (i + 1),
@@ -180,7 +180,7 @@ const GravityWorld = () => {
     const butterflyY = isMobile ? viewport.height * 0.6 : viewport.height - 200
     const butterflyWidth = isMobile ? 20 : 30
     const butterflyHeight = isMobile ? 15 : 20
-    
+
     for (let i = 0; i < butterflyCount; i++) {
       const butterfly = Bodies.rectangle(
         butterflySpacing * (i + 1),
@@ -224,7 +224,7 @@ const GravityWorld = () => {
     const renderCustom = () => {
       // Clear only the area we're drawing on (or use a separate canvas layer)
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      
+
       elements.forEach((body) => {
         if (body.letter) {
           ctx.save()
@@ -362,7 +362,7 @@ const GravityWorld = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-20"
+        className="fixed bottom-8 right-4 md:bottom-8 md:right-6 z-50"
       >
         <motion.button
           whileHover={{ scale: 1.05 }}
